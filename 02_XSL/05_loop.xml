@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="05_loop.xsl" ?>
+<!--<root>-->
+    <book_shop>
+        <book>
+            <title>
+                Lap trinh jquery
+            </title>
+            <author>Programming group</author>
+            <pages>300</pages>
+            <weight units="gam">400</weight>
+        </book>
+        <book>
+            <title>
+                Lap trinh java
+            </title>
+            <author>Programming group</author>
+            <pages>500</pages>
+            <weight units="gam">700</weight>
+        </book>
+        <book>
+            <title>
+                Lap trinh net
+            </title>
+            <author>Programming group</author>
+            <pages>600</pages>
+            <weight units="gam">800</weight>
+        </book>
+    </book_shop>
+<!--</root>-->

@@ -1,0 +1,44 @@
+
+Bài 01: XML
+1.XML là gì ?
+-> XML là viết tắt của eXtensible Markup Language(Ngôn ngữ đánh dấu mở rộng)
+-> XML là 1 ngôn ngữ đánh dấu (giống HTML)
+    o> XML KO CÓ thẻ riêng của nó.
+    o> XML cho phép user tạo ra bất kỳ thẻ nào (các thẻ mới phải tuân theo rule của XML)
+
+1.2.Các thẻ trong XML rất giống HTML gồm: 
+-> Thẻ tag
+-> Dữ liệu(data)
+-> Thuộc tính(attribute)
+
+1.3.XML được xây dựng trên dạng cây
+-> Trong tập tin XML phải có tối thiểu là một nút gốc
+
+
+1.4.XML KO PHẢI là một ngôn ngữ thay thế cho HTML
+
+1.5.XML được hỗ trợ trên all các trình duyệt và hệ điều hành (HĐH)
+
+2.XML dùng làm gì ?
+-> Lưu các info nhỏ (nếu info lớn thì sẽ làm chậm web, info lớn thì lưu vào MySQL)
+-> Tạo phần tóm tắt nội dung ngắn gọn cho website(RSS)
+-> Tạo sơ đồ cho các website(sitemap)
+-> Là cầu nối để trao đổi data giữa các ứng dụng web(Web services)
+(tức là làm trung gian giữa các ngôn ngữ web: như php <-> java <-> asp)
+
+-> Kết hợp vs JS để tạo ra kỹ thuật Ajax
+...
+
+3.Các RULE của XML
+-> Phải có thẻ đóng khi mở thẻ
+-> Mỗi tài liệu XML phải có 1 phần tử gốc và nó là duy nhất
+-> XML CÓ phân biệt HOA/thường
+-> Dùng "" để chứa giá trị thuộc tính
+-> Trong content của THẺ và THUỘC TÍNH => KO ĐƯỢC CÓ (5) các ký tự đặc biệt sau: & < > " '
+mà phải viết như sau: 
+
+& thay bằng &amp;
+< thay bằng &lt;
+> thay bằng &gt;
+" thay bằng &quot;
+' thay bằng &apos;

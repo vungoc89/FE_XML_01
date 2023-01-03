@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<root>
+    <book_shop>
+        <book>
+            <title>
+                Lap trinh jquery
+            </title>
+            <author>Programming group</author>
+            <pages>500</pages>
+            <weight units="gam">700</weight>
+            <img file="jquery.jpg" />
+        </book>
+        <book>
+            <title>
+                Lap trinh PHP
+            </title>
+            <author>Programming &amp; group</author>
+            <pages>&apos;700&apos;</pages>
+            <weight units="gam">800</weight>
+        </book>
+        <book>
+            <title>
+                Lap trinh java
+            </title>
+            <author>Programming group</author>
+            <pages>1000</pages>
+            <weight units="gam">1000</weight>
+        </book>
+    </book_shop>
+</root>

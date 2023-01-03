@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="02_basic.xsl" ?>
+<!--<root>-->
+    <book_shop>
+        <book>
+            <title>
+                Lap trinh jquery
+            </title>
+            <author>Programming group</author>
+            <pages>500</pages>
+            <weight units="gam">700</weight>
+        </book>
+    </book_shop>
+<!--</root>-->

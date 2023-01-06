@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+AJAX = su ket hop giua JS + XML
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <script src="js/xml.js" type="text/javascript"></script>
+        <script type="text/javascript">
+//--------------------------------------------------
+
+//--------------------------------------------------
+
+            window.onload = function () {
+                var btnProcess = document.getElementById("process");
+                btnProcess.onclick = function () {
+                    var xmlDOM = loadFile("files/01_books.xml", "GET", "xml");
+                    
+                    var str = "";
+                    var books = xmlDOM.getElementsByTagName("book");
+                    console.log(books);
+                    
+                    for(var i = 0; i < books.length; i++){
+                        var book = books[i];
+                        console.log(i + " - " + book);//HTMLCollection(3) [book#11, book#22, book#33]
+                    
+                        var title = book.childNodes[1].childNodes[0].nodeValue;
+                        str += "Title: " + title + "<br />";
+                        
+                        var author = book.childNodes[3].childNodes[0].nodeValue;
+                        str += "Author: " + author + "<br />";
+                        
+                        var page = book.childNodes[5].childNodes[0].nodeValue;
+                        str += "Page " + page + "<br />";
+                        
+                        var weight = book.childNodes[7].childNodes[0].nodeValue;
+                        var units = book.childNodes[7].getAttribute("units");
+                        str += "Weight: " + weight + units + "<br />";
+//                        console.log(book.childNodes[7]);//ok
+//                        console.log(book.childNodes[7].getAttribute("units"));//ok
+                        
+                        var price = book.childNodes[9];
+                        var real = price.childNodes[1].childNodes[0].nodeValue;
+                        var saleoff = price.childNodes[3].childNodes[0].nodeValue;
+                        str += "Real Price: " + real + "<br />";
+                        str += "Saleoff Price: " + saleoff + "<br />";
+                        
+                        var ship = book.childNodes[11];
+                        var US = ship.childNodes[1].childNodes[0].nodeValue;
+                        var EU = ship.childNodes[3].childNodes[0].nodeValue;
+                        var VN = ship.childNodes[5].childNodes[0].nodeValue;
+                        
+                        str += "Shipping to US: " + US + "<br />";
+                        str += "Shipping to EU: " + EU + "<br />";
+                        str += "Shipping to VN: " + VN + "<br />";
+                        str += "<br/>=================================<br/>";
+                    }
+                     var boxA = document.getElementById("boxA");
+                     boxA.innerHTML = str;
+        //--------------------------------------------------
+
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <div id="boxA" class="boxA">
+
+        </div>
+        <div style="text-align: center; padding: 10px;">
+            <input type="button" id="process" name="process" class="button" value="Process">
+        </div>
+    </body>
+</html>

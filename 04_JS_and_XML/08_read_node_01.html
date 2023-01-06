@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+AJAX = su ket hop giua JS + XML
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <script src="js/xml.js" type="text/javascript"></script>
+        <script type="text/javascript">
+//--------------------------------------------------
+
+//--------------------------------------------------
+
+            window.onload = function () {
+                var btnProcess = document.getElementById("process");
+                btnProcess.onclick = function () {
+                    var xmlDOM = loadFile("files/01_books.xml", "GET", "xml");
+                    
+                    var books = xmlDOM.getElementsByTagName("book");
+                    var first_book = books[0];
+//                     console.log(first_book);//ok
+//                     
+                    var node_list = first_book.childNodes;
+//                    console.log(node_list);//ok
+                    
+                    var first_title = first_book.childNodes[1];
+//                    console.log(first_title);//<title>Lập trình jQuery</title>
+
+//                    var childFirstTitleRoot1 = first_title.childNodes;
+//                     console.log(childFirstTitleRoot1);//NodeList [text]
+                    var childFirstTitleRoot2 = first_title.childNodes[0];
+                     console.log(childFirstTitleRoot2);// "Lập trình jQuery"
+                     
+                    var childFirstTitle = childFirstTitleRoot2.nodeValue;
+                     console.log(childFirstTitle); //Lập trình jQuery (ko co "")
+                     //
+                     var boxA = document.getElementById("boxA");
+                     boxA.innerHTML = childFirstTitle;
+        //--------------------------------------------------
+
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <div id="boxA" class="boxA">
+
+        </div>
+        <div style="text-align: center; padding: 10px;">
+            <input type="button" id="process" name="process" class="button" value="Process">
+        </div>
+    </body>
+</html>

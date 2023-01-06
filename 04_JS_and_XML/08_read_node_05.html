@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--
+AJAX = su ket hop giua JS + XML
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <script src="js/xml.js" type="text/javascript"></script>
+        <script type="text/javascript">
+//--------------------------------------------------
+
+//---------------USE XPATH nhanh hon getElementsByTagName -----------------------------------
+
+            window.onload = function () {
+                var btnProcess = document.getElementById("process");
+                btnProcess.onclick = function () {
+                    var xmlDOM = loadFile("files/01_books.xml", "GET", "xml");
+                    
+                    var str = "";
+                    var title;
+                    console.log(xmlDOM.evaluate);
+                    if(xmlDOM.evaluate){ //Chrome - W3C
+//                        title = xmlDOM.evaluate("//title", xmlDOM, null, XPathResult.ANY_TYPE,null);
+//                        console.log(title.iteralNext());
+                        title = objXPathResult(xmlDOM, "//title");
+                        titleResult = title.iterateNext();
+                        console.log(titleResult.childNodes[0].nodeValue);//ok: Lập trình jQuery
+                        
+            
+//                        author = xmlDOM.evaluate("//author", xmlDOM, null, XPathResult.ANY_TYPE,null);
+//                        console.log(title.iteralNext());
+
+                        author = objXPathResult(xmlDOM, "//author");
+                        authorResult = author.iterateNext();
+                        console.log(authorResult.childNodes[0].nodeValue);//ok: Lập trình jQuery
+            
+//                        real = xmlDOM.evaluate("//real", xmlDOM, null, XPathResult.ANY_TYPE,null);
+//                        console.log(title.iteralNext());
+
+                        real = objXPathResult(xmlDOM, "//real");
+                        realResult = real.iterateNext();
+                        console.log(realResult.childNodes[0].nodeValue);//ok: Lập trình jQuery
+                        
+                        while(titleResult){
+                            console.log(titleResult.childNodes[0].nodeValue);
+                            titleResult = title.iterateNext();
+                            
+                            console.log(authorResult.childNodes[0].nodeValue);
+                            authorResult = author.iterateNext();
+                            
+                            console.log(realResult.childNodes[0].nodeValue);
+                            realResult = real.iterateNext();
+                        }
+//                        title2 = xmlDOM.evaluate("//book[@id=22]/title", xmlDOM, null, XPathResult.ANY_TYPE,null);
+////                        console.log(title.iteralNext());
+//                        title2Result = title2.iterateNext();
+//                        console.log(title2Result.childNodes[0].nodeValue);//ok: Lập trình jQuery
+
+                    }else{ //IE
+                        title = xmlDOM.selectNodes("//title");
+                        console.log(title.length);
+                        for(var i = 0; i < title.length; i++){
+                            console.log(title[i].childNodes[0].nodeValue);
+                        }
+                        var author = xmlDOM.selectSingleNode("//author");
+//                        console.log(author);
+                        console.log(author.childNodes[0].nodeValue);
+                    }
+                     var boxA = document.getElementById("boxA");
+                     boxA.innerHTML = str;
+        //--------------------------------------------------
+
+                }
+
+            }
+            
+            function objXPathResult(xmlObj, xPath){
+                return xmlObj.evaluate(xPath, xmlObj, null, XPathResult.ANY_TYPE,null);
+            }
+        </script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <div id="boxA" class="boxA">
+
+        </div>
+        <div style="text-align: center; padding: 10px;">
+            <input type="button" id="process" name="process" class="button" value="Process">
+        </div>
+    </body>
+</html>

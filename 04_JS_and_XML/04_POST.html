@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+AJAX = su ket hop giua JS + XML
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <!--<script src="js/xml.js" type="text/javascript"></script>-->
+        <script type="text/javascript">
+            window.onload = function(){
+                var btnProcess = document.getElementById("process");
+                btnProcess.onclick = function(){
+                    
+                    //--------------------------------------------------
+                    //B1: Khoi tao object XMLHtttpRequest
+                    
+                    if(window.XMLHttpRequest){
+                        var xhttp = new XMLHttpRequest();
+                    }else{//neu ko ho tro (tren IE5/IE6)
+                        var xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    
+                    //-------------------------------------
+                    var user = document.appForm.username.value;
+                    var pwd = document.appForm.password.value;
+                    console.log(user + " | " + pwd);
+                    var params = "username=" + user + "&password=" + pwd;
+                    console.log(params);
+                    //-------------------------------------
+//                    console.log(xhttp);//ok: readyState:0
+                    
+                    //B2: Xd method va file ma ta muon get info (dung GET/POSTI)
+//                    LOAD DUOC CA FILE HTML
+//                    xhttp.open("GET", "files/02.html", false);
+                    xhttp.open("POST", "files/04_POST.php", true);
+//                    LOAD DUOC CA FILE PHP
+//                    xhttp.open("GET", "files/03.php", false);
+                    //console.log(xhttp);//ok: readyState:1 (chuan bi read(chua get ve)
+                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                    //B3: Gui yeu cau den may chu
+                    xhttp.send(params);
+//                    console.log(xhttp.status);//200: ok, 404: error
+//                    console.log(xhttp.statusText);//OK , Not found
+                    console.log(xhttp);
+                    
+                    xhttp.onreadystatechange = function(){
+                        console.log("Is ok");//in 3 lan
+                        if(xhttp.readyState == 4 && xhttp.status == 200){
+//                            var txtDoc = xhttp.responseText;
+                            var txtXML = xhttp.responseXML;
+                            console.log(xhttp.responseXML);
+                            
+//                            var flag = txtXML.getElementsByTagName("flag")[0];//ok
+                            var flag = txtXML.getElementsByTagName("flag")[0].childNodes[0].nodeValue;//error (muc dich dong nay la lay duoc gia tri "error"
+//                            console.log(flag);
+                            
+                            var msg = "";
+                            if(flag == "error"){
+                                msg = txtXML.getElementsByTagName("msg")[0].childNodes[0].nodeValue;
+                            }else{
+                                msg = "Ban da login thanh cong";
+                            }
+                            
+                            console.log(msg);
+                            var boxA = document.getElementById("boxA");
+                            boxA.innerHTML = txtXML;//
+                        }
+                    }
+
+                    //--------------------------------------------------
+
+
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <div id="boxA" class="boxA">
+            
+        </div>
+        <div id="form" class="boxA">
+            <form name="appForm" id="appForm" method="post" enctype="multipart/form-data">
+                <div>
+                    Username: <input type="text" name="username" class="input">
+                </div>
+                <div>
+                    Password: <input type="password" name="password" class="input">
+                </div>
+
+                <div style="text-align: center; padding: 10px;">
+                    <input type="button" id="process" name="process" class="button" value="Process">
+                </div>
+             </form> 
+        </div>
+    </body>
+</html>

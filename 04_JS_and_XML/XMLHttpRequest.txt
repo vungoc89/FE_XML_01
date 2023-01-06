@@ -1,0 +1,34 @@
+
+XMLHttpRequest 
+Method: 
+-> abort() : huỷ bỏ thông tin đang gửi tới server
+
+-> getAllResponseHeaders(): get các info header của file mà ta request đến
+
+-> getResponseHeader(val) : get info chỉ định(val) trong tập các info từ header
+
+-> open(method, url, async, uname, pswd)
+
+-> send(string)
+
+-> setRequestHeader(label, val)
+
+Thuộc tính: 
+-> readyState: trả về các số nguyên, dải giá trị từ 0 -> 4
+0: chưa thực thi open
+1: đã làm open + chưa làm send
+2: yêu cầu đã gửi nhưng chưa nhận được info trả về
+3: đã nhận info trả về nhưng chưa phải là toàn bộ info
+4: đã gửi và nhận được info từ server
+
+-> responseXML : 
+
+-> responseText: 
+
+-> xhttp.status: 200: ok , 404: error
+
+
+-> xhttp.statusText: OK , Not found
+
+Sự kiện: 
+onreadystatechange

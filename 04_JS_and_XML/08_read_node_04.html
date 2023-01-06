@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--
+AJAX = su ket hop giua JS + XML
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <script src="js/xml.js" type="text/javascript"></script>
+
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <div id="boxA" class="boxA">
+
+        </div>
+        <div style="text-align: center; padding: 10px;">
+            <input type="button" id="process" name="process" class="button" value="Process">
+        </div>
+
+        <script type="text/javascript">
+//--------------------------------------------------
+
+//--------------------------------------------------
+//function getAttributeNode(node, attr) {
+//                    node.getAttribute(attr);
+//                }
+//                function getNode(parent, tag) {
+//                    return parent.getElementsByTagName(tag)[0];
+//                }
+//                function getNodeValue(node) {
+//                    return node.childNodes[0].nodeValue; //ban dau chay duoc,sau chay lai dang bi error undefined?
+//                }
+            window.onload = function () {
+                var btnProcess = document.getElementById("process");
+                btnProcess.onclick = function () {
+                    var xmlDOM = loadFile("files/01_books.xml", "GET", "xml");
+
+                    var str = "";
+//-------------- THAY VI USE CHILDNODES => USE getElementsByTagName
+                    var books = xmlDOM.getElementsByTagName("book");
+
+
+                    for (var i = 0; i < books.length; i++) {
+                        var book = books[i];
+//                        console.log(i + " - " + book);//HTMLCollection(3) [book#11, book#22, book#33]
+//                        console.log(book.getElementsByTagName("title")[0].childNodes[0].nodeValue);
+
+//                        var title = book.getElementsByTagName("title")[0].childNodes[0].nodeValue;
+                        var title = getNode(book, "title");
+                        console.log(title);
+//                        str += "Title: " + title + "<br />";
+                        str += "Title: " + getNodeValue(title) + "<br />";
+                        console.log(getNodeValue(title));
+                        
+                        var author = getNode(book, "author");
+                        str += "Author: " + getNodeValue(author) + "<br />";
+
+                        var page = getNode(book, "page");
+                        str += "Page " + getNodeValue(page) + "<br />";
+
+                        var weight = getNode(book, "weight");
+//                        var units = book.getElementsByTagName("units")[0].getAttribute("units");
+//                        var units = weight.getAttribute("units");
+                        var units = getAttributeNode(weight, "units");
+                        str += "Weight: " + getNodeValue(weight) + units + "<br />";
+//                        console.log(book.childNodes[7]);//ok
+//                        console.log(book.childNodes[7].getAttribute("units"));//ok
+
+//                        var price = book.getElementsByTagName("price")[0];
+//                        var real = price.getElementsByTagName("real")[0].childNodes[0].nodeValue;
+//                        var saleoff = price.getElementsByTagName("saleoff")[0].childNodes[0].nodeValue;
+//                      
+                        var price = getNode(book, "price");
+                        var real = getNode(price, "real");
+                        var saleoff = getNode(price, "saleoff");
+                        str += "Real Price: " + getNodeValue(real) + "<br />";
+                        str += "Saleoff Price: " + getNodeValue(saleoff) + "<br />";
+
+//                        var ship = book.getElementsByTagName("shipping")[0];
+//                        var US = ship.getElementsByTagName("US")[0].childNodes[0].nodeValue;
+//                        var EU = ship.getElementsByTagName("EU")[0].childNodes[0].nodeValue;
+//                        var VN = ship.getElementsByTagName("VN")[0].childNodes[0].nodeValue;
+                        var ship = getNode(book, "shipping");
+                        var US = getNode(ship, "US");
+                        var EU = getNode(ship, "EU");
+                        var VN = getNode(ship, "VN");
+
+                        str += "Shipping to US: " + getNodeValue(US) + "<br />";
+                        str += "Shipping to EU: " + getNodeValue(EU) + "<br />";
+                        str += "Shipping to VN: " + getNodeValue(VN) + "<br />";
+                        str += "<br/>=================================<br/>";
+                    }
+                    var boxA = document.getElementById("boxA");
+                    boxA.innerHTML = str;
+                    //--------------------------------------------------
+
+
+                }
+
+                
+            }
+
+
+        </script>
+    </body>
+</html>

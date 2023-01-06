@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+AJAX = su ket hop giua JS + XML
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <!--<script src="js/xml.js" type="text/javascript"></script>-->
+        <script type="text/javascript">
+            window.onload = function(){
+                var btnProcess = document.getElementById("process");
+                btnProcess.onclick = function(){
+                    
+                    //--------------------------------------------------
+                    //B1: Khoi tao object XMLHtttpRequest
+                    
+                    if(window.XMLHttpRequest){
+                        var xhttp = new XMLHttpRequest();
+                    }else{//neu ko ho tro (tren IE5/IE6)
+                        var xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    
+                    //-------------------------------------
+//                  
+                    //-------------------------------------
+//                    console.log(xhttp);//ok: readyState:0
+                    
+                    //B2: Xd method va file ma ta muon get info (dung GET/POSTI)
+//                    LOAD DUOC CA FILE HTML
+//                    xhttp.open("GET", "files/02.html", false);
+                    xhttp.open("GET", "files/05_setRequestHeader.php", true);
+//                    LOAD DUOC CA FILE PHP
+//                    xhttp.open("GET", "files/03.php", false);
+                    //console.log(xhttp);//ok: readyState:1 (chuan bi read(chua get ve)
+                    xhttp.setRequestHeader("Token", "9999");//setRequestHeader HỖ TRỢ CHO BẢO MẬT 
+                    xhttp.setRequestHeader("Token123", "112233");//setRequestHeader HỖ TRỢ CHO BẢO MẬT 
+
+                    //B3: Gui yeu cau den may chu
+                    xhttp.send();
+//                    
+//                    console.log(xhttp.status);//200: ok, 404: error
+//                    console.log(xhttp.statusText);//OK , Not found
+                    console.log(xhttp);
+                    
+                    xhttp.onreadystatechange = function(){
+                        console.log("Is ok");//in 3 lan
+                        if(xhttp.readyState === 4 && xhttp.status === 200){
+                            var txtDoc = xhttp.responseText;
+//                            var txtXML = xhttp.responseXML;
+//                            console.log(xhttp.responseXML);
+                            
+//                         
+                            var boxA = document.getElementById("boxA");
+                            boxA.innerHTML = txtDoc;//
+//                            boxA.innerHTML = txtXML;//
+                        }
+                    };
+
+                    //--------------------------------------------------
+
+
+                };
+            };
+        </script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <div id="boxA" class="boxA">
+            
+        </div>
+        <div style="text-align: center; padding: 10px;">
+            <input type="button" id="process" name="process" class="button" value="Process">
+        </div>
+    </body>
+</html>
